@@ -1,6 +1,6 @@
 # Covid 19 Heatmap API
 
-Backend GraphQL API implemented using Rust through the Rocket framework
+Backend REST API implemented using Rust through the Rocket framework
 
 ## Description
 
