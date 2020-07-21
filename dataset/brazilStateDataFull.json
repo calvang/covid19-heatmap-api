@@ -1,0 +1,245 @@
+[
+    {
+        "Confirmed": 13715,
+        "Deaths": 370,
+        "Population": 863187,
+        "Recovered": 0,
+        "State": "Acre",
+        "lat": -9.070003236,
+        "lon": -68.66997929
+    },
+    {
+        "Confirmed": 36819,
+        "Deaths": 1072,
+        "Population": 3316050,
+        "Recovered": 0,
+        "State": "Alagoas",
+        "lat": -9.48000405,
+        "lon": -35.83996769
+    },
+    {
+        "Confirmed": 28927,
+        "Deaths": 420,
+        "Population": 821025,
+        "Recovered": 0,
+        "State": "Amapá",
+        "lat": -0.039598369,
+        "lon": -51.17998743
+    },
+    {
+        "Confirmed": 72284,
+        "Deaths": 2843,
+        "Population": 4048608,
+        "Recovered": 0,
+        "State": "Amazonas",
+        "lat": -3.289580873,
+        "lon": -60.6199797
+    },
+    {
+        "Confirmed": 76485,
+        "Deaths": 1902,
+        "Population": 14784610,
+        "Recovered": 0,
+        "State": "Bahia",
+        "lat": -16.28000242,
+        "lon": -39.0299797
+    },
+    {
+        "Confirmed": 113017,
+        "Deaths": 6180,
+        "Population": 9048513,
+        "Recovered": 0,
+        "State": "Ceará",
+        "lat": -2.89999225,
+        "lon": -40.85002364
+    },
+    {
+        "Confirmed": 50676,
+        "Deaths": 620,
+        "Population": 2951617,
+        "Recovered": 0,
+        "State": "Distrito Federal",
+        "lat": -15.78334023,
+        "lon": -47.91605229
+    },
+    {
+        "Confirmed": 48821,
+        "Deaths": 1693,
+        "Population": 3949346,
+        "Recovered": 0,
+        "State": "Espírito Santo",
+        "lat": -20.85000771,
+        "lon": -41.12998071
+    },
+    {
+        "Confirmed": 25541,
+        "Deaths": 503,
+        "Population": 6874185,
+        "Recovered": 0,
+        "State": "Goiás",
+        "lat": -17.73004311,
+        "lon": -49.10998458
+    },
+    {
+        "Confirmed": 83256,
+        "Deaths": 2081,
+        "Population": 7016370,
+        "Recovered": 0,
+        "State": "Maranhão",
+        "lat": -5.809995505,
+        "lon": -46.14998438
+    },
+    {
+        "Confirmed": 16621,
+        "Deaths": 634,
+        "Population": 3420112,
+        "Recovered": 0,
+        "State": "Mato Grosso",
+        "lat": -15.65001504,
+        "lon": -56.14002059
+    },
+    {
+        "Confirmed": 8676,
+        "Deaths": 85,
+        "Population": 2732364,
+        "Recovered": 0,
+        "State": "Mato Grosso do Sul",
+        "lat": -22.53000853,
+        "lon": -55.7299681
+    },
+    {
+        "Confirmed": 47584,
+        "Deaths": 1007,
+        "Population": 20977751,
+        "Recovered": 0,
+        "State": "Minas Gerais",
+        "lat": -18.78000486,
+        "lon": -42.95002466
+    },
+    {
+        "Confirmed": 105853,
+        "Deaths": 4960,
+        "Population": 8470482,
+        "Recovered": 0,
+        "State": "Pará",
+        "lat": -1.190019105,
+        "lon": -47.17999903
+    },
+    {
+        "Confirmed": 48175,
+        "Deaths": 1002,
+        "Population": 3985063,
+        "Recovered": 0,
+        "State": "Paraíba",
+        "lat": -7.019585756,
+        "lon": -37.29000838
+    },
+    {
+        "Confirmed": 24225,
+        "Deaths": 663,
+        "Population": 11305246,
+        "Recovered": 0,
+        "State": "Paraná",
+        "lat": -24.08996499,
+        "lon": -54.2699797
+    },
+    {
+        "Confirmed": 59705,
+        "Deaths": 4894,
+        "Population": 9468390,
+        "Recovered": 0,
+        "State": "Pernambuco",
+        "lat": -8.110010153,
+        "lon": -35.02004358
+    },
+    {
+        "Confirmed": 22059,
+        "Deaths": 686,
+        "Population": 3259865,
+        "Recovered": 0,
+        "State": "Piauí",
+        "lat": -4.820030091,
+        "lon": -42.18001998
+    },
+    {
+        "Confirmed": 115278,
+        "Deaths": 10198,
+        "Population": 17106820,
+        "Recovered": 0,
+        "State": "Rio de Janeiro",
+        "lat": -22.56003253,
+        "lon": -44.1699502
+    },
+    {
+        "Confirmed": 31899,
+        "Deaths": 1067,
+        "Population": 3465412,
+        "Recovered": 0,
+        "State": "Rio Grande do Norte",
+        "lat": -5.650005271,
+        "lon": -37.80000309
+    },
+    {
+        "Confirmed": 28171,
+        "Deaths": 636,
+        "Population": 11303285,
+        "Recovered": 0,
+        "State": "Rio Grande do Sul",
+        "lat": -30.88004148,
+        "lon": -55.53000615
+    },
+    {
+        "Confirmed": 21462,
+        "Deaths": 520,
+        "Population": 1747751,
+        "Recovered": 0,
+        "State": "Rondônia",
+        "lat": -11.64002724,
+        "lon": -61.20999536
+    },
+    {
+        "Confirmed": 15153,
+        "Deaths": 314,
+        "Population": 567994,
+        "Recovered": 0,
+        "State": "Roraima",
+        "lat": 1.816231505,
+        "lon": -61.12767481
+    },
+    {
+        "Confirmed": 27279,
+        "Deaths": 347,
+        "Population": 7029751,
+        "Recovered": 0,
+        "State": "Santa Catarina",
+        "lat": -27.23003172,
+        "lon": -52.03001306
+    },
+    {
+        "Confirmed": 289935,
+        "Deaths": 15030,
+        "Population": 45343536,
+        "Recovered": 0,
+        "State": "São Paulo",
+        "lat": -23.65283405,
+        "lon": -46.52781661
+    },
+    {
+        "Confirmed": 25915,
+        "Deaths": 701,
+        "Population": 2268465,
+        "Recovered": 0,
+        "State": "Sergipe",
+        "lat": -11.26961058,
+        "lon": -37.45002446
+    },
+    {
+        "Confirmed": 11222,
+        "Deaths": 204,
+        "Population": 1547022,
+        "Recovered": 0,
+        "State": "Tocantins",
+        "lat": -6.319576804,
+        "lon": -47.41998438
+    }
+]
