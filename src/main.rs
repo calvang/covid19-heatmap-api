@@ -9,25 +9,51 @@ use clokwerk::{Scheduler, TimeUnits};
 // use clokwerk::Interval::*;
 // use std::thread;
 use std::time::Duration;
-use std::process::Command;
+use std::process::{Command, Stdio};
 use std::fs::File;
 use std::io::Read;
-//use rocket::response::content;
-use rocket_contrib::json::Json;
+use std::collections::HashSet;
+use rocket::response::content;
+//use rocket_contrib::json::Json;
+use rocket_cors::{CorsOptions, Error};
 
+// struct CorsOptions {
+//     pub allowed_origins: rocket_cors::AllowedOrigins::all(),
+//     pub allowed_methods: rocket_cors::AllowedMethods,
+//     pub allowed_headers: rocket_cors::AllowedHeaders,
+//     pub allow_credentials: bool,
+//     pub expose_headers: HashSet<String>,
+//     pub max_age: Option<usize>,
+//     pub send_wildcard: bool,
+//     pub fairing_route_base: String,
+//     pub fairing_route_rank: isize,
+// }
+
+// execute update script on dataset
 fn run_scripts() {
+    println!("Running data collection scripts.");
     Command::new("./dataset/updateData.sh")
-        .arg("")
+        .stdout(Stdio::inherit())
         .output()
         .expect("Failed to execute data cycle script");
+    println!("Finished running scripts.");
 }
 
-fn parse_counties() -> String {
+// read in us county data as JSON
+fn parse_us_counties() -> String {
     let mut json_file = File::open("dataset/fullCountyData.json").unwrap();
     let mut json_buffer = String::new();
     json_file.read_to_string(&mut json_buffer).unwrap();
     return json_buffer;
     //let json_data: serde_json::Value = serde_json::from_reader(json_file).unwrap();
+}
+
+// read in brazil state data as JSON
+fn parse_brazil_states() -> String {
+    let mut json_file = File::open("dataset/brazilStateDataCoords.json").unwrap();
+    let mut json_buffer = String::new();
+    json_file.read_to_string(&mut json_buffer).unwrap();
+    return json_buffer;
 }
 
 #[get("/")]
@@ -36,21 +62,29 @@ fn index() -> &'static str {
 }
 
 #[get("/us/counties")]
-fn get_us_counties() -> Json<String> {
-    Json(parse_counties())
+fn get_us_counties() -> content::Json<String> {
+    content::Json(parse_us_counties())
 }
 
-#[get("/brazil")]
-fn get_brazil_states() -> &'static str {
-    "Hello, world!"
+#[get("/brazil/states")]
+fn get_brazil_states() -> content::Json<String> {
+    content::Json(parse_brazil_states())
 }
 
-fn main() {
+// main function for rocket
+fn main() -> Result<(), Error> {
+    // handle CORS
+    let cors = CorsOptions {
+        ..Default::default()
+    }.to_cors()?;
+
     let mut scheduler = Scheduler::new();
-    scheduler.every(360.minutes()).run(|| run_scripts());
+    scheduler.every(1.minutes()).run(|| run_scripts());
     let _thread_handle = scheduler.watch_thread(Duration::from_millis(100));
-    rocket::ignite().mount("/", routes![index, get_us_counties, get_brazil_states])
+    rocket::ignite()
+        .mount("/", routes![index, get_us_counties, get_brazil_states])
+        .attach(cors)
         .launch();
-    // rocket::ignite().mount("/us/counties", routes![get_us_counties]).launch();
-    // rocket::ignite().mount("/brazil", routes![get_brazil_states]).launch();
+
+    Ok(())
 }

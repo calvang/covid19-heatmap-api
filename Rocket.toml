@@ -1,0 +1,6 @@
+[development]
+address = "localhost"
+port = 8000
+
+[production]
+base_url = "https://calvang-covid19-heatmap-api.herokuapp.com"
