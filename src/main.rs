@@ -1,34 +1,14 @@
 #![feature(proc_macro_hygiene, decl_macro)]
 
 #[macro_use] extern crate rocket;
-// extern crate serde;
-// extern crate serde_json;
-// Scheduler, and trait for .seconds(), .minutes(), etc.
 use clokwerk::{Scheduler, TimeUnits};
-// Import week days and WeekDay
-// use clokwerk::Interval::*;
-// use std::thread;
 use std::time::Duration;
 use std::process::{Command, Stdio};
 use std::fs::File;
 use std::io::Read;
-use std::collections::HashSet;
 use std::env;
 use rocket::response::content;
-//use rocket_contrib::json::Json;
 use rocket_cors::{CorsOptions, Error};
-
-// struct CorsOptions {
-//     pub allowed_origins: rocket_cors::AllowedOrigins::all(),
-//     pub allowed_methods: rocket_cors::AllowedMethods,
-//     pub allowed_headers: rocket_cors::AllowedHeaders,
-//     pub allow_credentials: bool,
-//     pub expose_headers: HashSet<String>,
-//     pub max_age: Option<usize>,
-//     pub send_wildcard: bool,
-//     pub fairing_route_base: String,
-//     pub fairing_route_rank: isize,
-// }
 
 // execute update script on dataset
 fn run_scripts() {
@@ -81,7 +61,7 @@ fn main() -> Result<(), Error> {
     }.to_cors()?;
 
     let mut scheduler = Scheduler::new();
-    scheduler.every(1.minutes()).run(|| run_scripts());
+    scheduler.every(360.minutes()).run(|| run_scripts());
     let _thread_handle = scheduler.watch_thread(Duration::from_millis(100));
     rocket::ignite()
         .mount("/", routes![index, get_us_counties, get_brazil_states])
