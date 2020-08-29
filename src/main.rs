@@ -13,6 +13,7 @@ use std::process::{Command, Stdio};
 use std::fs::File;
 use std::io::Read;
 use std::collections::HashSet;
+use std::env;
 use rocket::response::content;
 //use rocket_contrib::json::Json;
 use rocket_cors::{CorsOptions, Error};
@@ -32,7 +33,7 @@ use rocket_cors::{CorsOptions, Error};
 // execute update script on dataset
 fn run_scripts() {
     println!("Running data collection scripts.");
-    Command::new("./dataset/updateData.sh")
+    Command::new("./src/dataset/updateData.sh")
         .stdout(Stdio::inherit())
         .output()
         .expect("Failed to execute data cycle script");
@@ -41,7 +42,7 @@ fn run_scripts() {
 
 // read in us county data as JSON
 fn parse_us_counties() -> String {
-    let mut json_file = File::open("dataset/fullCountyData.json").unwrap();
+    let mut json_file = File::open("src/dataset/fullCountyData.json").unwrap();
     let mut json_buffer = String::new();
     json_file.read_to_string(&mut json_buffer).unwrap();
     return json_buffer;
@@ -50,7 +51,7 @@ fn parse_us_counties() -> String {
 
 // read in brazil state data as JSON
 fn parse_brazil_states() -> String {
-    let mut json_file = File::open("dataset/brazilStateDataCoords.json").unwrap();
+    let mut json_file = File::open("src/dataset/brazilStateDataCoords.json").unwrap();
     let mut json_buffer = String::new();
     json_file.read_to_string(&mut json_buffer).unwrap();
     return json_buffer;
@@ -73,6 +74,7 @@ fn get_brazil_states() -> content::Json<String> {
 
 // main function for rocket
 fn main() -> Result<(), Error> {
+    env::set_var("RUST_BACKTRACE", "1");
     // handle CORS
     let cors = CorsOptions {
         ..Default::default()

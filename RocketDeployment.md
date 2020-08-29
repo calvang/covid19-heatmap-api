@@ -11,3 +11,5 @@ Since this particular application uses Python scripts as well, it also needs the
 You can view the list of buildpacks for the app by running:
 
 `heroku buildpacks`
+
+You will likely need to set the Rocket port in the `Procfile`, which you need to create. See this project's procfile for a working example. The executable will be located in `target/release/<appname>`, but it will be run from the `/app` directory on the Heroku servers.
