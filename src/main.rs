@@ -18,8 +18,8 @@ use rocket::response::content;
 mod parser;
 
 #[get("/")]
-pub fn index() -> &'static str {
-    "Hello, world!"
+pub fn get_all_data() -> content::Json<String> {
+    content::Json(parser::parse_all())
 }
 
 #[get("/global")]
@@ -47,13 +47,12 @@ fn main() -> Result<(), Error> {
 
     // schedule data updates on different threads
     let mut scheduler = Scheduler::new();
-    scheduler.every(720.minutes()).run(|| update_local());
-    scheduler.every(1.minutes()).run(|| update_global());
+    scheduler.every(720.minutes()).run(|| update_all());
     let _thread_handle = scheduler.watch_thread(Duration::from_millis(100));
 
     rocket::ignite()
         .mount("/", routes![
-            index,
+            get_all_data,
             get_global_data,
             get_us_counties,
             get_brazil_states
@@ -66,23 +65,33 @@ fn main() -> Result<(), Error> {
 
 // execute update script on local dataset
 fn update_local() {
-    println!("Running local data collection scripts.");
+    println!(" - Running local data collection scripts.");
     Command::new("./src/dataset/updateLocalData.sh")
         .stdout(Stdio::inherit())
         .output()
-        .expect("Failed to execute local data cycle script");
-    println!("Finished running local scripts.");
+        .expect(" - Failed to execute local data cycle script");
+    println!(" - Finished running local scripts.");
 }
 
 // execute update script on global dataset
 fn update_global() {
-    println!("Running global data collection scripts.");
+    println!(" - Running global data collection scripts.");
     Command::new("./src/dataset/updateGlobalData.sh")
         .stdout(Stdio::inherit())
         .output()
-        .expect("Failed to execute global data cycle script");
-    println!("Finished running global scripts.");
-    println!("Reformatting global data.");
+        .expect(" - Failed to execute global data cycle script");
+    println!(" - Finished running global scripts.");
+    println!(" - Reformatting global data.");
     parser::format_global_data();
-    println!("Finished formatting global data.");
+    println!(" - Finished formatting global data.");
+}
+
+// execute formatting on all updated data
+fn update_all() {
+    println!("Running update on all data.");
+    update_local();
+    update_global();
+    println!("Formatting complete dataset.");
+    parser::format_all_data();
+    println!("Finished updating data.");
 }

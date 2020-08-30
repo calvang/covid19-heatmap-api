@@ -5,9 +5,10 @@ use std::io::Read;
 use std::io::Write;
 use std::path::Path;
 use serde::{Deserialize, Serialize};
+use serde_json::Value;
 
 // global data from the COVID-19 API summary
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Default)]
 struct SummaryGlobal {
     NewConfirmed: u32,
     TotalConfirmed: u32,
@@ -76,6 +77,25 @@ struct Global {
     Countries: Vec<Country>,
 }
 
+// Default trait for gnerating default values
+impl Default for Global {
+    fn default () -> Global {
+        Global{
+            Global: SummaryGlobal::default(),
+            Countries: Vec::new(),
+        }
+    }
+}
+
+#[derive(Serialize, Deserialize)]
+struct FullData {
+    Global: SummaryGlobal,
+    Countries: Vec<Country>,
+    USCounties: Vec<Value>,
+    BrazilStates: Vec<Value>,
+}
+
+
 // parse JSON file into a string
 fn parse_json(file_path: &str) -> String {
     let mut json_file = File::open(file_path).unwrap();
@@ -84,8 +104,22 @@ fn parse_json(file_path: &str) -> String {
     return json_buffer;
 }
 
-// reformat COVID-19 API data by merging desired fields with known country data
-pub fn format_global_data() {
+// overwrite JSON file or generate new file
+fn write_json(data: &str, file_path: &str) {
+    let file = Path::new(file_path);
+    let path_display = file.display();
+    let mut outfile = match File::create(&file) {
+        Err(e) => panic!("Failed to create {}: {}", path_display, e),
+        Ok(outfile) => outfile,
+    };
+    match outfile.write_all(data.as_bytes()) {
+        Err(e) => panic!("Failed to write to {}: {}", path_display, e),
+        Ok(_) => println!(" - Successfully wrote to {}", path_display),
+    };
+}
+
+// merge COVID-19 API data with known country data
+fn merge_global_data(data: &mut Global) {
     // read JSON strings into custom structs
     let summary_data = parse_json("src/dataset/currentGlobalData.json");
     let country_data = parse_json("src/dataset/fullDataSet.json");
@@ -93,10 +127,7 @@ pub fn format_global_data() {
     let country_values: Vec<CountryInfo> = serde_json::from_str(&country_data).unwrap();
 
     // iterate over datasets and merge desired fields
-    let mut data = Global {
-        Global: summary_values.Global,
-        Countries: Vec::new(),
-    };
+    data.Global = summary_values.Global;
     for i in &country_values {
         for j in &summary_values.Countries {
             if i.Lat != None && i.Population != None
@@ -128,18 +159,36 @@ pub fn format_global_data() {
             }
         }
     }
+}
 
+// reformat all data for root endpoint
+pub fn format_all_data() {
+    let mut global_data = Global::default();
+    merge_global_data(&mut global_data);
+    let us_counties: Vec<Value> = serde_json::from_str(&parse_us_counties()).unwrap();
+    let brazil_states: Vec<Value> = serde_json::from_str(&parse_brazil_states()).unwrap();
+    let data = FullData {
+        Global: global_data.Global,
+        Countries: global_data.Countries,
+        USCounties: us_counties,
+        BrazilStates: brazil_states,
+    };
+    write_json(&serde_json::to_string(&data).unwrap(),
+        "src/dataset/allAvailableData.json");
+}
+
+// reformat COVID-19 API data by merging desired fields with known country data
+pub fn format_global_data() {
+    let mut data = Global::default();
+    merge_global_data(&mut data);
     // write the formatted data to fullGlobalData.json
-    let file_path = Path::new("src/dataset/fullGlobalData.json");
-    let path_display = file_path.display();
-    let mut outfile = match File::create(&file_path) {
-        Err(e) => panic!("Failed to create {}: {}", path_display, e),
-        Ok(outfile) => outfile,
-    };
-    match outfile.write_all(&serde_json::to_string(&data).unwrap().as_bytes()) {
-        Err(e) => panic!("Failed to write to {}: {}", path_display, e),
-        Ok(_) => println!("successfully wrote to {}", path_display),
-    };
+    write_json(&serde_json::to_string(&data).unwrap(),
+        "src/dataset/fullGlobalData.json");
+}
+
+// read in full data set to string
+pub fn parse_all() -> String {
+    return parse_json("src/dataset/allAvailableData.json");
 }
 
 // read in global data to string

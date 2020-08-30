@@ -4,5 +4,7 @@
 
 cd src/dataset
 
-echo "Retrieving current global data..."
+echo "   > Retrieving current global data..."
 curl https://api.covid19api.com/summary > currentGlobalData.json
+
+echo "   > Done."

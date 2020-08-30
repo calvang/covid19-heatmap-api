@@ -1,0 +1,106 @@
+[33mcommit e073997bd07972377a71ec0acd758fa0b028f594[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: calvang <calvin.huang5@gmail.com>
+Date:   Sun Aug 30 03:39:08 2020 -0400
+
+    Refactor response formatting and update scheduling
+    
+    Update response formatting and update scheduling
+    
+    M
+
+[33mcommit 9239f9779cf977dcc536648026f8dffd92b9cdb1[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: calvang <calvin.huang5@gmail.com>
+Date:   Sun Aug 30 03:32:56 2020 -0400
+
+    Implement global data formatting
+
+[33mcommit 583a301ec7500a6fac780aa54ae5599515ff028b[m
+Author: calvang <calvin.huang5@gmail.com>
+Date:   Sat Aug 29 01:26:19 2020 -0400
+
+    Clean up imports and filepaths
+    
+    Update data cycle
+
+[33mcommit 30082f2cfb51c06e63314a015996cfbfe86932ab[m
+Author: calvang <calvin.huang5@gmail.com>
+Date:   Fri Aug 28 23:29:59 2020 -0400
+
+    Update Procfile command
+    
+    Update Procfile
+    
+    Update Procfile
+    
+    Update Procfile
+    
+    Update Procfile
+    
+    Update Procfile
+    
+    Update Procfile
+    
+    Update Procfile
+    
+    Update Procfile
+    
+    Update Procfile
+    
+    Update Procfile
+    
+    Update Procfile
+    
+    Update Procfile
+    
+    Update Procfile
+
+[33mcommit 5957829655f1cfcd0b9f47f4f0bcb1dd0a7bb018[m
+Author: calvang <calvin.huang5@gmail.com>
+Date:   Fri Aug 28 23:09:43 2020 -0400
+
+    Update Rocket port
+
+[33mcommit e1fa65f26acacdd180f408af269ba55c06b79d51[m
+Author: calvang <calvin.huang5@gmail.com>
+Date:   Fri Aug 28 22:52:08 2020 -0400
+
+    Add heroku configuration and fix bash executable
+
+[33mcommit b0df8bf327339b56142ac8d12f9f489435c0b8b8[m
+Author: calvang <calvin.huang5@gmail.com>
+Date:   Tue Jul 21 01:21:01 2020 -0400
+
+    Remove dataset from repo
+
+[33mcommit ba34699cd733bcc1f3327b9177e553648add775f[m
+Author: calvang <calvin.huang5@gmail.com>
+Date:   Tue Jul 21 01:19:04 2020 -0400
+
+    Complete basic API structure
+
+[33mcommit 4b8bf813c19761a0f86cf7492baab93cfb9644d5[m
+Author: calvang <calvin.huang5@gmail.com>
+Date:   Mon Jul 20 18:43:10 2020 -0400
+
+    Add endpoints
+
+[33mcommit 89c9e94af6fa02c18e0b5bc818504d5030fbb0fd[m
+Merge: ac503e7 253a095
+Author: Calvin Huang <55956236+calvang@users.noreply.github.com>
+Date:   Mon Jul 20 18:20:36 2020 -0400
+
+    Merge pull request #1 from calvang/add-license-1
+    
+    Create LICENSE
+
+[33mcommit 253a095bdbdab4f47180bec4d4c0beadcb99aeaa[m[33m ([m[1;31morigin/add-license-1[m[33m)[m
+Author: Calvin Huang <55956236+calvang@users.noreply.github.com>
+Date:   Mon Jul 20 18:20:20 2020 -0400
+
+    Create LICENSE
+
+[33mcommit ac503e7fc1535d58a2ba18f0ae97dd8faf0f8899[m
+Author: calvang <calvin.huang5@gmail.com>
+Date:   Mon Jul 20 18:19:24 2020 -0400
+
+    Rewrite file tree
