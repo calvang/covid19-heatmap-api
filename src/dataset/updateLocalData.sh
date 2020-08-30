@@ -1,8 +1,6 @@
 #!/bin/bash
-# Script to get updated Covid-19 data on counties and process it to be readable by the map
+# Script to get updated Covid-19 data on counties/states and process it to be readable by the map
 # Schedule a cron job to automate these updates
-
-cd src/dataset
 
 echo "Retrieving updated county data..."
 curl https://usafactsstatic.blob.core.windows.net/public/data/covid-19/covid_confirmed_usafacts.csv > currentCountyCases.csv
