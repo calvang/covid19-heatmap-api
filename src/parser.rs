@@ -203,5 +203,5 @@ pub fn parse_us_counties() -> String {
 
 // read in brazil state data to string
 pub fn parse_brazil_states() -> String {
-    return parse_json("src/dataset/brazilStateDataCoords.json");
+    return parse_json("src/dataset/brazilStateDataFull.json");
 }
